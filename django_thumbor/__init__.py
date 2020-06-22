@@ -51,6 +51,9 @@ def _handle_url_field(url):
     return url
 
 def generate_url(image_url, alias=None, **kwargs):
+    # not using thumbor in development
+    if settings.DEBUG:
+        return image_url
     image_url = _handle_empty(image_url)
     image_url = _handle_url_field(image_url)
     image_url = _prepend_media_url(image_url)
